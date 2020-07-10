@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     public void PlayerAttack()
     {
         waitingForInput = false;
+        
     }
 
     public void NextTarget()

@@ -16,6 +16,8 @@ public class Character : MonoBehaviour
     public float distanceFromEnemy;
     public Transform target;
     public TargetIndicator targetIndicator;
+    DamageEffect damageEffect;
+    
     Animator animator;
     Vector3 originalPosition;
     Quaternion originalRotation;
@@ -24,7 +26,7 @@ public class Character : MonoBehaviour
     bool shouldAttack;
     bool animationEnded;
     bool dead;
-
+    float characterRotationSpeed = 25f;
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,7 +35,9 @@ public class Character : MonoBehaviour
         originalRotation = transform.rotation;
         health = GetComponent<Health>();
         targetIndicator = GetComponentInChildren<TargetIndicator>();
+        damageEffect = GetComponent<DamageEffect>();
         StartCoroutine(Logic());
+        
     }
 
     public bool IsIdle()
@@ -51,6 +55,7 @@ public class Character : MonoBehaviour
         if (IsDead())
             return;
 
+        damageEffect.PlayDamageEffect();   
         health.ApplyDamage(1.0f); // FIXME захардкожено
         if (health.current <= 0.0f)
         {
@@ -93,7 +98,9 @@ public class Character : MonoBehaviour
         return true;
     }
 
+
     
+
 
     IEnumerator Logic()
     {
@@ -131,6 +138,23 @@ public class Character : MonoBehaviour
                     
             }
 
+
+            //Rotate to enemy
+            if (weapon == Weapon.Pistol)
+            {
+                Vector3 distance = target.position - transform.position;
+                Vector3 direction = distance.normalized;
+                Quaternion dir = Quaternion.LookRotation(direction);
+                while(Quaternion.Angle(dir,transform.rotation)>0.001)
+                {
+                    transform.rotation = Quaternion.Lerp(transform.rotation, dir, characterRotationSpeed * Time.deltaTime);
+                    yield return null;
+                }
+                originalRotation = dir;
+                
+            }
+                
+
             // BeginAttack / BeginPunch / BeginShoot
             animationEnded = false;
             switch (weapon) {
@@ -143,13 +167,18 @@ public class Character : MonoBehaviour
                     break;
 
                 case Weapon.Pistol:
+                    Debug.Log("Shooting");
+                    
+                    
                     animator.SetTrigger("Shoot");
+                   
                     break;
             }
 
             // Attack / Punch / Shoot
             while (!animationEnded)
                 yield return null;
+            
             animationEnded = false;
 
             // RunningFromEnemy

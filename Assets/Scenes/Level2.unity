@@ -640,6 +640,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3284515283640718059, guid: ec4b6a0b6924a2e419f93c7a483c42f1,
+        type: 3}
+      propertyPath: current
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7053335385835233256, guid: ec4b6a0b6924a2e419f93c7a483c42f1,
         type: 3}
       propertyPath: target
@@ -2291,6 +2296,8 @@ MonoBehaviour:
   enemyCharacters:
   - {fileID: 208957057}
   - {fileID: 939849168}
+  endGameMenu: {fileID: 6902210212801357455, guid: bc2aee2731eb6fc418954f8a9209640c,
+    type: 3}
 --- !u!4 &823848128
 Transform:
   m_ObjectHideFlags: 0
@@ -5703,6 +5710,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8235164682113902312, guid: 64682c4d2bbf87e41b48ebbf2d02b88e,
+        type: 3}
+      propertyPath: current
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64682c4d2bbf87e41b48ebbf2d02b88e, type: 3}
 --- !u!4 &58106324052850938 stripped
@@ -5773,6 +5785,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3284515283640718059, guid: ec4b6a0b6924a2e419f93c7a483c42f1,
+        type: 3}
+      propertyPath: current
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7053335385835233256, guid: ec4b6a0b6924a2e419f93c7a483c42f1,
         type: 3}
       propertyPath: target
@@ -5801,6 +5818,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hooligan1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584858624924877274, guid: 9f6b6093c8242ac4bb871ec8bf4649c5,
+        type: 3}
+      propertyPath: current
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8784210691615228092, guid: 9f6b6093c8242ac4bb871ec8bf4649c5,
         type: 3}
