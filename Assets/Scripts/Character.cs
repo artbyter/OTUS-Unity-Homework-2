@@ -47,6 +47,7 @@ public class Character : MonoBehaviour
 
     public bool IsDead()
     {
+        targetIndicator.gameObject.SetActive(false);
         return dead;
     }
 
@@ -55,7 +56,8 @@ public class Character : MonoBehaviour
         if (IsDead())
             return;
 
-        damageEffect.PlayDamageEffect();   
+        damageEffect.PlayDamageEffect();
+        animator.SetTrigger("Damaged");
         health.ApplyDamage(1.0f); // FIXME захардкожено
         if (health.current <= 0.0f)
         {
