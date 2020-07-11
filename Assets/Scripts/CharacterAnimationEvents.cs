@@ -12,7 +12,7 @@ public class CharacterAnimationEvents : MonoBehaviour
     {
         character = GetComponentInParent<Character>();
         muzzleFlash = character.GetComponentInChildren<MuzzleFlash>();
-        Debug.Log(muzzleFlash);
+        
     }
 
     void DoDamage()

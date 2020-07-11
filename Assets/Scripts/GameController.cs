@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,11 @@ public class GameController : MonoBehaviour
     {
         switchButton.onClick.AddListener(NextTarget);
         StartCoroutine(GameLoop());
+    }
+
+    public void ChangeButtonsVisibility(bool show)
+    {
+        Utility.SetCanvasGroupEnabled(buttonsCanvasGroup, show);
     }
 
     public void PlayerAttack()
@@ -113,7 +119,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator GameLoop()
     {
-        Utility.SetCanvasGroupEnabled(buttonsCanvasGroup, false);
+        ChangeButtonsVisibility(false);
 
         while (!CheckEndGame()) {
             foreach (var player in playerCharacters) {
@@ -124,15 +130,18 @@ public class GameController : MonoBehaviour
                
                 if (currentTarget == null)
                     break;
-                
 
+                Debug.Log(currentTarget.name);
+                Debug.Log("Name" +currentTarget.targetIndicator);
                 currentTarget.targetIndicator.gameObject.SetActive(true);
 
-                Utility.SetCanvasGroupEnabled(buttonsCanvasGroup, true);
+                ChangeButtonsVisibility(true);
+                
                 waitingForInput = true;
                 while (waitingForInput)
                     yield return null;
-                Utility.SetCanvasGroupEnabled(buttonsCanvasGroup, false);
+
+                ChangeButtonsVisibility(false);
 
                 currentTarget.targetIndicator.gameObject.SetActive(false);
 

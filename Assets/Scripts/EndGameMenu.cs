@@ -15,10 +15,6 @@ public class EndGameMenu : MonoBehaviour
     {
         TextMeshProUGUI text = GetComponentsInChildren<TextMeshProUGUI>().Where(n => n.name == "EndGameText").Select(n => n).First();
         
-        if (text == null)
-            Debug.Log("Something wrong");
-        else
-            Debug.Log(text);
         text.text = endText;
     }
 

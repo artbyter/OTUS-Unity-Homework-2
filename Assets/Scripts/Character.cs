@@ -16,6 +16,7 @@ public class Character : MonoBehaviour
     public float distanceFromEnemy;
     public Transform target;
     public TargetIndicator targetIndicator;
+    LifeBar lifeBar;
     DamageEffect damageEffect;
     
     Animator animator;
@@ -35,7 +36,9 @@ public class Character : MonoBehaviour
         originalRotation = transform.rotation;
         health = GetComponent<Health>();
         targetIndicator = GetComponentInChildren<TargetIndicator>();
+        targetIndicator.gameObject.SetActive(false);
         damageEffect = GetComponent<DamageEffect>();
+        lifeBar = GetComponentInChildren<LifeBar>();
         StartCoroutine(Logic());
         
     }
@@ -47,7 +50,7 @@ public class Character : MonoBehaviour
 
     public bool IsDead()
     {
-        targetIndicator.gameObject.SetActive(false);
+        
         return dead;
     }
 
@@ -62,6 +65,8 @@ public class Character : MonoBehaviour
         if (health.current <= 0.0f)
         {
             dead = true;
+            targetIndicator.gameObject.SetActive(false);
+            lifeBar.gameObject.SetActive(false);
         }
             
     }
@@ -169,9 +174,7 @@ public class Character : MonoBehaviour
                     break;
 
                 case Weapon.Pistol:
-                    Debug.Log("Shooting");
-                    
-                    
+                   
                     animator.SetTrigger("Shoot");
                    
                     break;
